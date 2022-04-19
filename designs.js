@@ -1,6 +1,5 @@
 let submitBtn = document.querySelector('input[type="submit"]');
 let table = document.getElementById('pixelCanvas');
-console.log("----", table.children);
 
 submitBtn.addEventListener('click', (e) => {
     if (table.children.length === 0) {
@@ -12,11 +11,14 @@ submitBtn.addEventListener('click', (e) => {
         makeGrid(height, width);
     } else {
         e.preventDefault();
-        // let rows = table.rows;
-        // for(let i=0; i<rows.length; i++){
-        //     rows.item(i).style.backgroundColor = '';
-        // }
-        table.removeEventListener(e, respondToClick);
+        // Get all table data items
+        let allTableDataItems = document.querySelectorAll('td');
+        for (let tableDataItem of allTableDataItems) {
+            // if table data item has background color, remove it.
+            if (tableDataItem.style.backgroundColor) {
+                tableDataItem.style.backgroundColor = null;
+            }
+        }
     }
 })
 
